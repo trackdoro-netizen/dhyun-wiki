@@ -555,6 +555,7 @@
 
 <div id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
 <script>
 const STORAGE_KEY = 'dhyun_wiki_v1';
 
@@ -658,57 +659,16 @@ function parseMarkdown(md) {
     return '__WL' + idx + '__';
   });
 
-  // 3. HTML escape + markdown processing
-  let html = md
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>')
-    .replace(/`([^`]+)`/g,'<code>$1</code>')
-    .replace(/^#### (.+)$/gm,'<h4>$1</h4>')
-    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
-    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
-    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
-    .replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/^&gt; (.+)$/gm,'<blockquote><p>$1</p></blockquote>')
-    .replace(/^---$/gm,'<hr>')
-    .replace(/\[ \] /g,'<input type="checkbox" disabled> ')
-    .replace(/\[x\] /g,'<input type="checkbox" disabled checked> ')
-    .replace(/^- (.+)$/gm,'<li class="_ul">$1</li>')
-    .replace(/^\d+\. (.+)$/gm,'<li class="_ol">$1</li>');
-
-  // Table
-  const lines = html.split('\n');
-  const out = [];
-  let inTable = false, headerDone = false;
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (/^\|.+\|$/.test(line)) {
-      if (!inTable) { out.push('<table>'); inTable = true; headerDone = false; }
-      if (/^\|[-:\s|]+\|$/.test(line)) { headerDone = true; continue; }
-      const cells = line.slice(1,-1).split('|').map(c=>c.trim());
-      const tag = !headerDone ? 'th' : 'td';
-      out.push('<tr>' + cells.map(c=>`<${tag}>${c}</${tag}>`).join('') + '</tr>');
-    } else {
-      if (inTable) { out.push('</table>'); inTable = false; }
-      out.push(line);
-    }
+  // 3. Parse markdown (marked.js primary, custom fallback)
+  let html;
+  if (typeof marked !== 'undefined') {
+    try {
+      marked.setOptions({ breaks: true, gfm: true });
+      html = marked.parse(md);
+    } catch(e) { html = _markdownFallback(md); }
+  } else {
+    html = _markdownFallback(md);
   }
-  if (inTable) out.push('</table>');
-  html = out.join('\n');
-
-  // Wrap list items
-  html = html.replace(/(<li class="_ul">[^]*?<\/li>\n?)+/g, m => '<ul>' + m + '</ul>');
-  html = html.replace(/(<li class="_ol">[^]*?<\/li>\n?)+/g, m => '<ol>' + m + '</ol>');
-  html = html.replace(/ class="_ul"| class="_ol"/g, '');
-
-  // Paragraphs
-  html = html.split('\n\n').map(block => {
-    const t = block.trim();
-    if (!t) return '';
-    if (/^<(h[1-6]|pre|ul|ol|blockquote|hr|table|tr|input)/.test(t)) return t;
-    return '<p>' + t.replace(/\n/g,'<br>') + '</p>';
-  }).join('\n');
 
   // 4. Replace footnote placeholders
   fnRefs.forEach((text, i) => {
@@ -728,6 +688,54 @@ function parseMarkdown(md) {
     html = html.split('__WL' + i + '__').join(replacement);
   });
 
+  return html;
+}
+
+function _markdownFallback(md) {
+  let html = md
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/^#### (.+)$/gm,'<h4>$1</h4>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^&gt; (.+)$/gm,'<blockquote><p>$1</p></blockquote>')
+    .replace(/^---$/gm,'<hr>')
+    .replace(/\[ \] /g,'<input type="checkbox" disabled> ')
+    .replace(/\[x\] /g,'<input type="checkbox" disabled checked> ')
+    .replace(/^- (.+)$/gm,'<li class="_ul">$1</li>')
+    .replace(/^\d+\. (.+)$/gm,'<li class="_ol">$1</li>');
+  const lines = html.split('\n');
+  const out = [];
+  let inTable = false, headerDone = false;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (/^\|.+\|$/.test(line)) {
+      if (!inTable) { out.push('<table>'); inTable = true; headerDone = false; }
+      if (/^\|[-:\s|]+\|$/.test(line)) { headerDone = true; continue; }
+      const cells = line.slice(1,-1).split('|').map(c=>c.trim());
+      const tag = !headerDone ? 'th' : 'td';
+      out.push('<tr>' + cells.map(c=>`<${tag}>${c}</${tag}>`).join('') + '</tr>');
+    } else {
+      if (inTable) { out.push('</table>'); inTable = false; }
+      out.push(line);
+    }
+  }
+  if (inTable) out.push('</table>');
+  html = out.join('\n');
+  html = html.replace(/(<li class="_ul">[^]*?<\/li>\n?)+/g, m => '<ul>' + m + '</ul>');
+  html = html.replace(/(<li class="_ol">[^]*?<\/li>\n?)+/g, m => '<ol>' + m + '</ol>');
+  html = html.replace(/ class="_ul"| class="_ol"/g, '');
+  html = html.split('\n\n').map(block => {
+    const t = block.trim();
+    if (!t) return '';
+    if (/^<(h[1-6]|pre|ul|ol|blockquote|hr|table|tr|input)/.test(t)) return t;
+    return '<p>' + t.replace(/\n/g,'<br>') + '</p>';
+  }).join('\n');
   return html;
 }
 
