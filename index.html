@@ -398,9 +398,35 @@
     #post-list th:nth-child(4), #post-list td:nth-child(4),
     #post-list th:nth-child(5), #post-list td:nth-child(5) { display: none; }
   }
+  /* ── Password Lock ──────────────────── */
+  #pw-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #pw-box {
+    background: var(--abg); border: 1px solid var(--bdl);
+    border-radius: 4px; padding: 32px 28px; text-align: center;
+    box-shadow: 0 4px 16px var(--sh); min-width: 260px;
+  }
+  #pw-box h2 { font-size: 16px; margin-bottom: 18px; color: var(--tx); }
+  #pw-input {
+    border: 1px solid var(--bd); background: var(--abg); color: var(--tx);
+    padding: 7px 10px; font-size: 15px; border-radius: 2px;
+    font-family: inherit; width: 120px; text-align: center; letter-spacing: 4px;
+  }
+  #pw-input:focus { outline: none; border-color: var(--hg); }
+  #pw-err { color: var(--lkr); font-size: 12px; margin-top: 8px; min-height: 16px; }
 </style>
 </head>
 <body>
+<div id="pw-overlay">
+  <div id="pw-box">
+    <h2>도현위키</h2>
+    <input id="pw-input" type="password" maxlength="10" placeholder="비밀번호" autofocus>
+    <div id="pw-err"></div>
+  </div>
+</div>
 
 <div id="header">
   <div id="header-inner">
@@ -1111,6 +1137,27 @@ function showToast(msg) {
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+// Password Lock
+(function() {
+  if (sessionStorage.getItem('dhyun_wiki_auth') === '1') {
+    document.getElementById('pw-overlay').remove();
+    return;
+  }
+  const input = document.getElementById('pw-input');
+  const err = document.getElementById('pw-err');
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      if (input.value === '2201') {
+        sessionStorage.setItem('dhyun_wiki_auth', '1');
+        document.getElementById('pw-overlay').remove();
+      } else {
+        err.textContent = '비밀번호가 틀렸습니다.';
+        input.value = '';
+      }
+    }
+  });
+})();
 
 // Init
 loadData();
