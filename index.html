@@ -646,7 +646,7 @@ function parseMarkdown(md) {
   md = md.replace(/\[\*([^\]]*)\]/g, (_, text) => {
     const n = fnRefs.length + 1;
     fnRefs.push(text);
-    return '__FN' + n + '__';
+    return 'FNREF' + n + 'ENDREF';
   });
 
   // 2. Extract wiki links [[title|display]] or [[title]]
@@ -656,7 +656,7 @@ function parseMarkdown(md) {
     const display = (parts[1] || parts[0]).trim();
     const idx = wlRefs.length;
     wlRefs.push({title, display});
-    return '__WL' + idx + '__';
+    return 'WLREF' + idx + 'ENDREF';
   });
 
   // 3. Parse markdown (marked.js primary, custom fallback)
@@ -674,7 +674,7 @@ function parseMarkdown(md) {
   fnRefs.forEach((text, i) => {
     const n = i + 1;
     _footnotes.push({n, text});
-    html = html.split('__FN' + n + '__').join(
+    html = html.split('FNREF' + n + 'ENDREF').join(
       `<sup class="fn-ref" onclick="scrollToFn(${n})">[${n}]</sup>`
     );
   });
@@ -685,7 +685,7 @@ function parseMarkdown(md) {
     const replacement = found
       ? `<a class="wl" onclick="viewPost(${found.id})">${esc(wl.display)}</a>`
       : `<span class="wl-new" title="문서 없음: ${esc(wl.title)}">${esc(wl.display)}</span>`;
-    html = html.split('__WL' + i + '__').join(replacement);
+    html = html.split('WLREF' + i + 'ENDREF').join(replacement);
   });
 
   return html;
