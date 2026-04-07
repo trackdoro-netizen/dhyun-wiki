@@ -6,89 +6,120 @@
 <title>도현의 지식위키</title>
 <style>
   :root {
-    --bg: #f0ece4;
-    --bg2: #e8e0d4;
-    --bg3: #fff9f0;
-    --border: #b8a898;
-    --border2: #d0c4b8;
-    --text: #2c2416;
-    --text2: #5c4a38;
-    --text3: #8c7a68;
-    --accent: #8b4513;
-    --accent2: #a0522d;
-    --accent3: #cd853f;
-    --link: #6b3410;
-    --tag-bg: #d4c4b0;
-    --highlight: #fffacd;
-    --shadow: rgba(0,0,0,0.15);
-    --green: #2d6a4f;
-    --red: #9b2335;
+    --bg: #f6f6f6;
+    --bg2: #eaecf0;
+    --bg3: #ffffff;
+    --border: #a2a9b1;
+    --border2: #c8ccd1;
+    --text: #202122;
+    --text2: #54595d;
+    --text3: #72777d;
+    --accent: #00A495;
+    --accent2: #008a7d;
+    --accent3: #33b5ac;
+    --link: #0645ad;
+    --link-visited: #0b0080;
+    --tag-bg: #eaecf0;
+    --highlight: #f8f9fa;
+    --shadow: rgba(0,0,0,0.12);
+    --green: #006400;
+    --red: #b32424;
+    --warn-bg: #fff3cd;
+    --toc-bg: #f8f9fa;
+    --blockquote-bg: #f8f9fa;
+    --blockquote-border: #3680b0;
+    --table-header-bg: #eaecf0;
   }
   .dark {
-    --bg: #1a1510;
-    --bg2: #251e16;
-    --bg3: #2e2620;
-    --border: #4a3c2e;
-    --border2: #3a2e22;
-    --text: #e8dcc8;
-    --text2: #c8b89a;
-    --text3: #8a7a68;
-    --accent: #cd853f;
-    --accent2: #d4915a;
-    --accent3: #e8a870;
-    --link: #e8a870;
-    --tag-bg: #3a2e22;
-    --highlight: #2a2010;
+    --bg: #1a1a1b;
+    --bg2: #27272a;
+    --bg3: #1e1e1f;
+    --border: #3f3f42;
+    --border2: #333335;
+    --text: #e8e6e3;
+    --text2: #b0b0b5;
+    --text3: #909095;
+    --accent: #00c4b3;
+    --accent2: #00a495;
+    --accent3: #33d4c8;
+    --link: #7eb4f2;
+    --link-visited: #a9b5e8;
+    --tag-bg: #333335;
+    --highlight: #252526;
     --shadow: rgba(0,0,0,0.4);
     --green: #52b788;
     --red: #e07070;
+    --warn-bg: #2d2a00;
+    --toc-bg: #252526;
+    --blockquote-bg: #252526;
+    --blockquote-border: #5b9ec9;
+    --table-header-bg: #2d2d30;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.6;
     min-height: 100vh;
   }
   a { color: var(--link); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  a:visited { color: var(--link-visited); }
 
+  /* ── HEADER ── */
   #header {
-    background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%);
-    border-bottom: 3px solid #5c2e0a;
+    background: var(--accent);
+    border-bottom: 2px solid var(--accent2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px var(--shadow);
   }
   #header-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 16px;
-    background: rgba(0,0,0,0.1);
+    padding: 0 16px;
+    height: 46px;
   }
   #logo {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    color: #fff9f0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    letter-spacing: -0.5px;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
-  #logo span { color: #ffd080; }
+  #logo .logo-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 14px;
+  }
   #header-tools { display: flex; gap: 6px; align-items: center; }
   .hbtn {
     background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.35);
     color: #fff;
-    padding: 4px 10px;
+    padding: 4px 11px;
     border-radius: 3px;
     cursor: pointer;
     font-size: 12px;
     font-family: inherit;
+    transition: background 0.15s;
   }
-  .hbtn:hover { background: rgba(255,255,255,0.3); }
+  .hbtn:hover { background: rgba(255,255,255,0.28); }
   #search-bar {
-    background: var(--bg2);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.12);
+    border-top: 1px solid rgba(0,0,0,0.1);
     padding: 6px 16px;
     display: flex;
     gap: 8px;
@@ -96,114 +127,130 @@
   }
   #search-input {
     flex: 1;
-    border: 1px solid var(--border);
-    background: var(--bg3);
-    color: var(--text);
-    padding: 5px 8px;
-    font-size: 12px;
-    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.92);
+    color: #202122;
+    padding: 5px 9px;
+    font-size: 13px;
+    border-radius: 2px;
     font-family: inherit;
   }
-  #search-input:focus { outline: none; border-color: var(--accent3); }
+  #search-input:focus { outline: none; border-color: #fff; background: #fff; }
   .sbtn {
-    background: var(--accent2);
-    border: 1px solid var(--accent);
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
     color: #fff;
-    padding: 5px 12px;
-    border-radius: 3px;
+    padding: 5px 14px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 12px;
     font-family: inherit;
     white-space: nowrap;
+    transition: background 0.15s;
   }
-  .sbtn:hover { background: var(--accent); }
+  .sbtn:hover { background: rgba(255,255,255,0.35); }
 
+  /* ── LAYOUT ── */
   #layout {
     display: flex;
-    max-width: 1280px;
+    max-width: 1240px;
     margin: 0 auto;
-    min-height: calc(100vh - 90px);
+    min-height: calc(100vh - 82px);
+    padding: 0;
   }
-  #sidebar {
-    width: 200px;
-    min-width: 200px;
-    background: var(--bg2);
-    border-right: 1px solid var(--border);
-    padding: 12px 0;
-  }
-  #main { flex: 1; overflow: hidden; }
 
+  /* ── SIDEBAR ── */
+  #sidebar {
+    width: 186px;
+    min-width: 186px;
+    background: var(--bg3);
+    border-right: 1px solid var(--border2);
+    padding: 10px 0;
+    font-size: 13px;
+  }
+  .side-section { margin-bottom: 4px; }
   .side-title {
     background: var(--accent);
     color: #fff;
     padding: 5px 12px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-    margin-bottom: 2px;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 0;
   }
   .side-item {
     display: flex;
     align-items: center;
-    padding: 4px 12px 4px 20px;
+    padding: 5px 12px 5px 16px;
     cursor: pointer;
     font-size: 12px;
     color: var(--text2);
     border-bottom: 1px solid var(--border2);
-    gap: 6px;
+    gap: 5px;
+    transition: background 0.1s;
   }
-  .side-item:hover { background: var(--highlight); color: var(--accent); }
-  .side-item.active { background: var(--highlight); color: var(--accent); font-weight: bold; }
+  .side-item:hover { background: var(--bg2); color: var(--accent); }
+  .side-item.active { background: var(--bg2); color: var(--accent); font-weight: bold; border-left: 3px solid var(--accent); padding-left: 13px; }
   .side-count {
     margin-left: auto;
-    background: var(--tag-bg);
+    background: var(--bg2);
     color: var(--text3);
     padding: 1px 5px;
     border-radius: 10px;
     font-size: 10px;
   }
+  #tag-cloud { padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 4px; }
 
+  /* ── MAIN ── */
+  #main { flex: 1; overflow: hidden; background: var(--bg3); border-left: 1px solid var(--border2); }
+
+  /* ── BOARD (list view) ── */
   #board-header {
     background: var(--bg2);
     border-bottom: 2px solid var(--accent);
-    padding: 8px 16px;
+    padding: 7px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 8px;
   }
-  #board-title { font-size: 15px; font-weight: bold; color: var(--accent); }
+  #board-title { font-size: 14px; font-weight: bold; color: var(--text); }
   #board-controls { display: flex; gap: 6px; align-items: center; }
   .ctrl-select {
     border: 1px solid var(--border);
     background: var(--bg3);
     color: var(--text);
     padding: 3px 6px;
-    border-radius: 3px;
+    border-radius: 2px;
     font-size: 11px;
     font-family: inherit;
   }
   .write-btn {
-    background: var(--accent2);
-    border: 1px solid var(--accent);
+    background: var(--accent);
+    border: 1px solid var(--accent2);
     color: #fff;
     padding: 4px 14px;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 12px;
     font-weight: bold;
     font-family: inherit;
+    transition: background 0.15s;
   }
-  .write-btn:hover { background: var(--accent); }
+  .write-btn:hover { background: var(--accent2); }
 
   #post-list { width: 100%; border-collapse: collapse; }
-  #post-list thead tr { background: var(--bg2); border-bottom: 1px solid var(--border); }
+  #post-list thead tr {
+    background: var(--table-header-bg);
+    border-bottom: 2px solid var(--border);
+  }
   #post-list th {
     padding: 6px 10px;
     text-align: left;
     font-size: 11px;
-    color: var(--text3);
+    color: var(--text2);
     font-weight: bold;
     border-right: 1px solid var(--border2);
     white-space: nowrap;
@@ -211,42 +258,44 @@
   #post-list th:last-child { border-right: none; }
   #post-list tbody tr { border-bottom: 1px solid var(--border2); cursor: pointer; }
   #post-list tbody tr:hover { background: var(--highlight); }
-  #post-list td { padding: 8px 10px; font-size: 12px; vertical-align: middle; }
+  #post-list td { padding: 7px 10px; font-size: 13px; vertical-align: middle; }
   .post-num { color: var(--text3); text-align: center; width: 40px; }
   .post-cat-badge {
     display: inline-block;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 2px;
     font-size: 10px;
     font-weight: bold;
     white-space: nowrap;
+    border: 1px solid transparent;
   }
-  .cat-마케팅 { background: #e8d4a0; color: #6b4800; }
-  .cat-창작론 { background: #d0e8d0; color: #1a5c1a; }
-  .cat-생활팁 { background: #d0d8e8; color: #1a2a5c; }
-  .post-title-cell { max-width: 400px; }
-  .post-title-link { color: var(--text); font-weight: bold; font-size: 13px; }
-  .post-title-link:hover { color: var(--accent); }
-  .post-tags { margin-top: 2px; display: flex; gap: 3px; flex-wrap: wrap; }
+  .cat-마케팅 { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+  .cat-창작론 { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+  .cat-생활팁 { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+  .post-title-cell { max-width: 420px; }
+  .post-title-link { color: var(--link); font-size: 13px; }
+  .post-title-link:hover { text-decoration: underline; }
+  .post-tags { margin-top: 3px; display: flex; gap: 3px; flex-wrap: wrap; }
   .tag {
     display: inline-block;
-    padding: 1px 5px;
+    padding: 1px 6px;
     background: var(--tag-bg);
     color: var(--text3);
     border-radius: 2px;
-    font-size: 10px;
+    font-size: 11px;
     cursor: pointer;
+    border: 1px solid var(--border2);
   }
-  .tag:hover { background: var(--accent3); color: #fff; }
+  .tag:hover { background: var(--accent3); color: #fff; border-color: var(--accent3); }
   .post-date { color: var(--text3); font-size: 11px; white-space: nowrap; }
   .post-views { color: var(--text3); font-size: 11px; text-align: center; }
   .bookmark-star { color: var(--text3); cursor: pointer; font-size: 14px; text-align: center; }
-  .bookmark-star.active { color: #f0a500; }
+  .bookmark-star.active { color: #f59e0b; }
 
-  #pagination { padding: 12px; display: flex; justify-content: center; gap: 4px; }
+  #pagination { padding: 12px; display: flex; justify-content: center; gap: 3px; }
   .page-btn {
-    border: 1px solid var(--border);
-    background: var(--bg2);
+    border: 1px solid var(--border2);
+    background: var(--bg3);
     color: var(--text2);
     padding: 4px 9px;
     border-radius: 2px;
@@ -254,68 +303,262 @@
     font-size: 12px;
     font-family: inherit;
   }
-  .page-btn:hover { background: var(--accent3); color: #fff; }
-  .page-btn.active { background: var(--accent); color: #fff; font-weight: bold; }
+  .page-btn:hover { background: var(--accent3); color: #fff; border-color: var(--accent3); }
+  .page-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: bold; }
 
+  /* ── POST VIEW ── */
   #post-view { display: none; }
   #post-view-header {
-    background: var(--bg2);
-    border-bottom: 2px solid var(--accent);
-    padding: 12px 16px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border2);
+    padding: 16px 20px 10px;
   }
-  .pv-cat { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
-  .pv-title { font-size: 18px; font-weight: bold; color: var(--text); }
-  .pv-meta { display: flex; gap: 16px; margin-top: 8px; font-size: 11px; color: var(--text3); flex-wrap: wrap; }
-  #post-view-body { padding: 20px; min-height: 300px; line-height: 1.8; border-bottom: 1px solid var(--border); }
-  .md-content h1 { font-size: 20px; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 6px; margin: 16px 0 10px; }
-  .md-content h2 { font-size: 17px; color: var(--accent2); border-bottom: 1px solid var(--border2); padding-bottom: 4px; margin: 14px 0 8px; }
-  .md-content h3 { font-size: 15px; color: var(--text); margin: 12px 0 6px; }
+  .pv-cat {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 6px;
+  }
+  .pv-cat a { color: var(--accent); font-weight: bold; }
+  .pv-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .pv-meta { display: flex; gap: 14px; font-size: 11px; color: var(--text3); flex-wrap: wrap; }
+  .pv-tags-row { padding: 8px 20px; border-bottom: 1px solid var(--border2); display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+  .pv-tags-label { font-size: 11px; color: var(--text3); }
+
+  /* ── WIKI CONTENT STYLES ── */
+  #post-view-body { padding: 18px 20px 24px; min-height: 300px; line-height: 1.8; }
+  .md-content { font-size: 14px; }
+  .md-content h1 {
+    font-size: 19px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 4px;
+    margin: 20px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .md-content h2 {
+    font-size: 16px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 3px;
+    margin: 16px 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .md-content h3 {
+    font-size: 14px;
+    color: var(--text);
+    margin: 14px 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .md-content p { margin: 8px 0; }
-  .md-content ul, .md-content ol { margin: 8px 0 8px 20px; }
+  .md-content ul, .md-content ol { margin: 8px 0 8px 24px; }
   .md-content li { margin: 3px 0; }
-  .md-content blockquote { border-left: 3px solid var(--accent3); padding: 6px 12px; background: var(--highlight); margin: 10px 0; color: var(--text2); }
-  .md-content code { background: var(--bg2); padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 12px; border: 1px solid var(--border2); }
-  .md-content pre { background: var(--bg2); padding: 12px; border-radius: 4px; border: 1px solid var(--border); overflow-x: auto; margin: 10px 0; }
-  .md-content pre code { background: none; border: none; padding: 0; }
-  .md-content strong { color: var(--accent2); }
-  .md-content em { color: var(--text2); }
+
+  /* 나무위키 인용 박스 */
+  .md-content blockquote {
+    border-left: 4px solid var(--blockquote-border);
+    padding: 8px 14px;
+    background: var(--blockquote-bg);
+    margin: 10px 0;
+    color: var(--text2);
+    border-radius: 0 3px 3px 0;
+    font-size: 13px;
+  }
+  .md-content code {
+    background: var(--bg2);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 12px;
+    border: 1px solid var(--border2);
+    color: #c7254e;
+  }
+  .dark .md-content code { color: #e8a0a0; }
+  .md-content pre {
+    background: var(--bg2);
+    padding: 12px 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+    margin: 10px 0;
+  }
+  .md-content pre code { background: none; border: none; padding: 0; color: var(--text); }
+  .md-content strong { font-weight: bold; }
+  .md-content em { font-style: italic; color: var(--text2); }
   .md-content hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
-  .md-content table { border-collapse: collapse; width: 100%; margin: 10px 0; }
-  .md-content th { background: var(--bg2); border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
-  .md-content td { border: 1px solid var(--border2); padding: 5px 10px; }
+
+  /* 나무위키 테이블 */
+  .md-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    font-size: 13px;
+    border: 1px solid var(--border);
+  }
+  .md-content th {
+    background: var(--table-header-bg);
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--text);
+  }
+  .md-content td {
+    border: 1px solid var(--border2);
+    padding: 6px 10px;
+    vertical-align: top;
+  }
+  .md-content tr:nth-child(even) td { background: var(--highlight); }
+
+  /* 섹션 편집 버튼 */
+  .section-edit-btn {
+    font-size: 11px;
+    color: var(--text3);
+    border: 1px solid var(--border2);
+    background: var(--bg3);
+    padding: 1px 7px;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: inherit;
+    margin-left: 8px;
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+  .section-edit-btn:hover { background: var(--bg2); color: var(--accent); text-decoration: none; }
+
+  /* TOC (목차) */
+  .wiki-toc {
+    background: var(--toc-bg);
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    padding: 10px 14px;
+    display: inline-block;
+    min-width: 200px;
+    max-width: 400px;
+    margin: 12px 0 16px;
+    font-size: 13px;
+  }
+  .wiki-toc-title {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--text);
+  }
+  .toc-toggle {
+    font-size: 11px;
+    color: var(--link);
+    cursor: pointer;
+    font-weight: normal;
+    border: 1px solid var(--border2);
+    padding: 1px 6px;
+    border-radius: 2px;
+    background: var(--bg3);
+  }
+  .toc-toggle:hover { text-decoration: underline; }
+  .wiki-toc ol { margin: 0; padding-left: 18px; }
+  .wiki-toc li { margin: 2px 0; line-height: 1.5; }
+  .wiki-toc a { color: var(--link); font-size: 12px; }
+  .wiki-toc a:hover { text-decoration: underline; }
+  .wiki-toc .toc-h2 { padding-left: 0; }
+  .wiki-toc .toc-h3 { padding-left: 12px; list-style: none; }
+  .wiki-toc .toc-h3::before { content: '∙ '; color: var(--text3); }
+
+  /* 각주 */
+  .footnote-ref {
+    color: var(--link);
+    font-size: 11px;
+    vertical-align: super;
+    line-height: 0;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .footnote-ref:hover { text-decoration: underline; }
+  .footnotes-section {
+    margin-top: 24px;
+    border-top: 1px solid var(--border2);
+    padding-top: 10px;
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .footnotes-section h4 {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+  .footnote-item {
+    display: flex;
+    gap: 6px;
+    margin: 4px 0;
+    align-items: baseline;
+  }
+  .fn-num {
+    color: var(--link);
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .fn-num:hover { text-decoration: underline; }
+
+  /* wiki-link 스타일 */
+  .wiki-link { color: var(--link); cursor: pointer; }
+  .wiki-link:hover { text-decoration: underline; }
+
   #post-view-actions {
-    padding: 10px 16px;
+    padding: 10px 20px;
     display: flex;
     gap: 8px;
     background: var(--bg2);
-    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
   }
-  .pv-tags-row { padding: 10px 16px; border-bottom: 1px solid var(--border); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-  .pv-tags-label { font-size: 11px; color: var(--text3); }
   .action-btn {
     border: 1px solid var(--border);
     background: var(--bg3);
     color: var(--text2);
     padding: 5px 12px;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 12px;
     font-family: inherit;
+    transition: background 0.1s;
   }
-  .action-btn:hover { background: var(--bg2); border-color: var(--accent3); }
+  .action-btn:hover { background: var(--bg2); border-color: var(--accent3); color: var(--accent); }
   .action-btn.danger { color: var(--red); }
   .action-btn.danger:hover { background: var(--red); color: #fff; border-color: var(--red); }
 
+  /* ── EDITOR ── */
   #editor-view { display: none; }
   #editor-header {
     background: var(--bg2);
     border-bottom: 2px solid var(--accent);
-    padding: 10px 16px;
+    padding: 9px 16px;
     font-size: 14px;
     font-weight: bold;
-    color: var(--accent);
+    color: var(--text);
   }
-  #editor-form { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  #editor-form { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
   .form-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   .form-label { font-size: 12px; font-weight: bold; color: var(--text2); min-width: 50px; }
   .form-input {
@@ -324,7 +567,7 @@
     background: var(--bg3);
     color: var(--text);
     padding: 6px 8px;
-    border-radius: 3px;
+    border-radius: 2px;
     font-size: 13px;
     font-family: inherit;
     min-width: 200px;
@@ -335,11 +578,14 @@
     background: var(--bg3);
     color: var(--text);
     padding: 6px 8px;
-    border-radius: 3px;
+    border-radius: 2px;
     font-size: 13px;
     font-family: inherit;
   }
-  #editor-tabs { display: flex; border-bottom: 1px solid var(--border); }
+  #editor-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
   .etab {
     padding: 6px 14px;
     cursor: pointer;
@@ -366,14 +612,15 @@
     border: 1px solid var(--border2);
     background: var(--bg3);
     color: var(--text2);
-    padding: 3px 7px;
+    padding: 3px 8px;
     border-radius: 2px;
     cursor: pointer;
     font-size: 11px;
     font-family: monospace;
     font-weight: bold;
+    transition: background 0.1s;
   }
-  .tbtn:hover { background: var(--accent3); color: #fff; }
+  .tbtn:hover { background: var(--accent3); color: #fff; border-color: var(--accent3); }
   #edit-content {
     width: 100%;
     min-height: 360px;
@@ -384,7 +631,7 @@
     font-size: 13px;
     font-family: 'Malgun Gothic', monospace;
     resize: vertical;
-    border-radius: 0 3px 3px 3px;
+    border-radius: 0 2px 2px 2px;
     line-height: 1.7;
   }
   #edit-content:focus { outline: none; border-color: var(--accent3); }
@@ -393,44 +640,46 @@
     min-height: 360px;
     border: 1px solid var(--border);
     background: var(--bg3);
-    padding: 10px;
-    border-radius: 0 3px 3px 3px;
+    padding: 14px;
+    border-radius: 0 2px 2px 2px;
     display: none;
     overflow-y: auto;
   }
   .editor-btns { display: flex; gap: 8px; justify-content: flex-end; }
   .save-btn {
-    background: var(--accent2);
-    border: 1px solid var(--accent);
+    background: var(--accent);
+    border: 1px solid var(--accent2);
     color: #fff;
     padding: 7px 20px;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 13px;
     font-weight: bold;
     font-family: inherit;
+    transition: background 0.15s;
   }
-  .save-btn:hover { background: var(--accent); }
+  .save-btn:hover { background: var(--accent2); }
   .cancel-btn {
     background: var(--bg2);
     border: 1px solid var(--border);
     color: var(--text2);
     padding: 7px 16px;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: 13px;
     font-family: inherit;
   }
   .cancel-btn:hover { background: var(--border2); }
 
+  /* ── TOAST ── */
   #toast {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--accent);
+    background: #323232;
     color: #fff;
     padding: 10px 18px;
-    border-radius: 4px;
+    border-radius: 3px;
     font-size: 13px;
     box-shadow: 0 3px 10px var(--shadow);
     z-index: 9999;
@@ -440,6 +689,7 @@
   }
   #toast.show { opacity: 1; }
 
+  /* ── MODAL ── */
   .modal-overlay {
     position: fixed; inset: 0;
     background: rgba(0,0,0,0.5);
@@ -452,13 +702,13 @@
   .modal {
     background: var(--bg3);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 20px;
     max-width: 500px;
     width: 100%;
     box-shadow: 0 8px 24px var(--shadow);
   }
-  .modal h3 { font-size: 15px; color: var(--accent); margin-bottom: 14px; }
+  .modal h3 { font-size: 15px; color: var(--accent); margin-bottom: 12px; border-bottom: 1px solid var(--border2); padding-bottom: 8px; }
   .modal-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
   .modal textarea {
     width: 100%;
@@ -469,23 +719,25 @@
     padding: 8px;
     font-size: 11px;
     font-family: monospace;
-    border-radius: 3px;
+    border-radius: 2px;
     resize: vertical;
   }
   .modal p { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
 
+  /* ── STATS BAR ── */
   #stats-bar {
     background: var(--bg2);
-    border-top: 1px solid var(--border);
-    padding: 4px 16px;
+    border-top: 1px solid var(--border2);
+    padding: 4px 14px;
     font-size: 11px;
     color: var(--text3);
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
   }
-  .no-results { padding: 40px; text-align: center; color: var(--text3); font-size: 14px; }
+  .no-results { padding: 48px; text-align: center; color: var(--text3); font-size: 14px; }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     #sidebar { display: none; }
     #post-list th:nth-child(3), #post-list td:nth-child(3),
@@ -497,7 +749,10 @@
 
 <div id="header">
   <div id="header-top">
-    <div id="logo">📚 <span>도현</span>의 지식위키</div>
+    <div id="logo" onclick="showList()">
+      <span class="logo-icon">知</span>
+      도현의 지식위키
+    </div>
     <div id="header-tools">
       <button class="hbtn" id="dark-btn" onclick="toggleDark()">🌙 다크모드</button>
       <button class="hbtn" onclick="showBackupModal()">💾 백업</button>
@@ -506,15 +761,15 @@
   </div>
   <div id="search-bar">
     <input type="text" id="search-input" placeholder="제목, 내용, 태그로 검색..." onkeydown="if(event.key==='Enter')doSearch()">
-    <button class="sbtn" onclick="doSearch()">🔍 검색</button>
-    <button class="sbtn" onclick="clearSearch()" style="background:var(--text3);border-color:var(--text3)">초기화</button>
+    <button class="sbtn" onclick="doSearch()">검색</button>
+    <button class="sbtn" onclick="clearSearch()" style="background:rgba(0,0,0,0.15)">초기화</button>
   </div>
 </div>
 
 <div id="layout">
   <div id="sidebar">
     <div class="side-section">
-      <div class="side-title">📂 카테고리</div>
+      <div class="side-title">카테고리</div>
       <div class="side-item active" onclick="filterCat('')" id="cat-all">
         <span>🗂</span> 전체글 <span class="side-count" id="cnt-all">0</span>
       </div>
@@ -532,15 +787,15 @@
       </div>
     </div>
     <div class="side-section">
-      <div class="side-title">🏷 태그</div>
-      <div id="tag-cloud" style="padding:8px 10px;display:flex;flex-wrap:wrap;gap:4px;"></div>
+      <div class="side-title">태그</div>
+      <div id="tag-cloud"></div>
     </div>
   </div>
 
   <div id="main">
     <div id="list-view">
       <div id="board-header">
-        <div id="board-title">📋 전체 문서 목록</div>
+        <div id="board-title">전체 문서 목록</div>
         <div id="board-controls">
           <select class="ctrl-select" id="sort-select" onchange="applySort()">
             <option value="newest">최신순</option>
@@ -548,7 +803,7 @@
             <option value="title">제목순</option>
             <option value="views">조회순</option>
           </select>
-          <button class="write-btn" onclick="showEditor()">✏️ 새 글 작성</button>
+          <button class="write-btn" onclick="showEditor()">새 글 작성</button>
         </div>
       </div>
       <table id="post-list">
@@ -564,7 +819,7 @@
         </thead>
         <tbody id="post-tbody"></tbody>
       </table>
-      <div id="no-results" class="no-results" style="display:none">🔍 검색 결과가 없습니다.</div>
+      <div id="no-results" class="no-results" style="display:none">검색 결과가 없습니다.</div>
       <div id="pagination"></div>
       <div id="stats-bar"></div>
     </div>
@@ -574,8 +829,8 @@
         <div class="pv-cat" id="pv-cat"></div>
         <div class="pv-title" id="pv-title"></div>
         <div class="pv-meta">
-          <span>📅 <span id="pv-date"></span></span>
-          <span>👁 <span id="pv-views"></span>회</span>
+          <span>작성일: <span id="pv-date"></span></span>
+          <span>조회: <span id="pv-views"></span>회</span>
         </div>
       </div>
       <div class="pv-tags-row" id="pv-tags-row" style="display:none"></div>
@@ -583,13 +838,13 @@
       <div id="post-view-actions">
         <button class="action-btn" onclick="showList()">◀ 목록</button>
         <button class="action-btn" id="pv-bookmark-btn" onclick="toggleBookmarkCurrent()">☆ 북마크</button>
-        <button class="action-btn" onclick="editCurrentPost()">✏️ 수정</button>
-        <button class="action-btn danger" onclick="deleteCurrentPost()">🗑 삭제</button>
+        <button class="action-btn" onclick="editCurrentPost()">편집</button>
+        <button class="action-btn danger" onclick="deleteCurrentPost()">삭제</button>
       </div>
     </div>
 
     <div id="editor-view">
-      <div id="editor-header">✏️ 새 글 작성</div>
+      <div id="editor-header">새 글 작성</div>
       <div id="editor-form">
         <div class="form-row">
           <span class="form-label">카테고리</span>
@@ -609,8 +864,8 @@
         </div>
         <div>
           <div id="editor-tabs">
-            <div class="etab active" onclick="switchTab('edit')">✏️ 편집</div>
-            <div class="etab" onclick="switchTab('preview')">👁 미리보기</div>
+            <div class="etab active" onclick="switchTab('edit')">편집</div>
+            <div class="etab" onclick="switchTab('preview')">미리보기</div>
           </div>
           <div id="md-toolbar">
             <button class="tbtn" onclick="insertMd('**','**')">B</button>
@@ -624,13 +879,14 @@
             <button class="tbtn" onclick="insertMd('`','`')">코드</button>
             <button class="tbtn" onclick="insertMd('```\n','\n```')">블록</button>
             <button class="tbtn" onclick="insertMd('---\n','')">구분선</button>
+            <button class="tbtn" onclick="insertMd('((','))')">각주</button>
           </div>
-          <textarea id="edit-content" placeholder="마크다운으로 내용을 작성하세요..."></textarea>
+          <textarea id="edit-content" placeholder="마크다운으로 내용을 작성하세요...\n각주: ((각주 내용)) 형식으로 작성하면 자동으로 번호 처리됩니다."></textarea>
           <div id="preview-content" class="md-content"></div>
         </div>
         <div class="editor-btns">
           <button class="cancel-btn" onclick="cancelEdit()">취소</button>
-          <button class="save-btn" onclick="savePost()">💾 저장</button>
+          <button class="save-btn" onclick="savePost()">저장</button>
         </div>
       </div>
     </div>
@@ -646,25 +902,25 @@ const DEFAULT_POSTS = [
   {
     id:1, cat:'마케팅', title:'퍼널 마케팅 완전 정복',
     tags:['퍼널','AIDA','전환율','고객여정'],
-    content:`# 퍼널 마케팅 완전 정복\n\n## 퍼널이란?\n\n마케팅 퍼널(Marketing Funnel)은 잠재 고객이 **최초 인지**에서 **구매 결정**까지 이르는 과정을 깔때기(funnel) 모양으로 시각화한 모델입니다.\n\n## AIDA 모델\n\n| 단계 | 의미 | 핵심 액션 |\n|------|------|----------|\n| **A**wareness | 인지 | 노출, 광고, SNS |\n| **I**nterest | 관심 | 콘텐츠, 블로그 |\n| **D**esire | 욕구 | 리뷰, 사례연구 |\n| **A**ction | 행동 | CTA, 할인, 보증 |\n\n## 퍼널 단계별 전략\n\n### 1. 상단 퍼널 (TOFU)\n- 브랜드 인지도 확대\n- 콘텐츠 마케팅, SEO, SNS 광고\n- **목표**: 최대한 많은 잠재 고객 유입\n\n### 2. 중단 퍼널 (MOFU)\n- 관심 고객 육성 (Lead Nurturing)\n- 이메일 시퀀스, 웨비나, 무료 체험\n- **목표**: 신뢰 구축 및 구매 의향 높이기\n\n### 3. 하단 퍼널 (BOFU)\n- 구매 전환 극대화\n- 개인화 제안, 한정 혜택, 재타겟팅\n- **목표**: 실제 구매로 전환\n\n## 핵심 지표\n\n> 전환율 = (다음 단계 진입자 수 / 현재 단계 진입자 수) × 100\n\n- **클릭률(CTR)**: 광고 효율 측정\n- **리드 전환율**: TOFU → MOFU 효율\n- **구매 전환율**: 최종 성과 지표\n- **고객 획득 비용(CAC)**: 효율성 측정`,
+    content:`# 퍼널 마케팅 완전 정복\n\n## 퍼널이란?\n\n마케팅 퍼널(Marketing Funnel)은 잠재 고객이 **최초 인지**에서 **구매 결정**까지 이르는 과정을 깔때기(funnel) 모양으로 시각화한 모델입니다.((마케팅 퍼널 개념은 1898년 엘모 루이스(E. St. Elmo Lewis)가 처음 제시했습니다.))\n\n## AIDA 모델\n\n| 단계 | 의미 | 핵심 액션 |\n|------|------|----------|\n| **A**wareness | 인지 | 노출, 광고, SNS |\n| **I**nterest | 관심 | 콘텐츠, 블로그 |\n| **D**esire | 욕구 | 리뷰, 사례연구 |\n| **A**ction | 행동 | CTA, 할인, 보증 |\n\n## 퍼널 단계별 전략\n\n### 1. 상단 퍼널 (TOFU)\n- 브랜드 인지도 확대\n- 콘텐츠 마케팅, SEO, SNS 광고\n- **목표**: 최대한 많은 잠재 고객 유입\n\n### 2. 중단 퍼널 (MOFU)\n- 관심 고객 육성 (Lead Nurturing)\n- 이메일 시퀀스, 웨비나, 무료 체험\n- **목표**: 신뢰 구축 및 구매 의향 높이기\n\n### 3. 하단 퍼널 (BOFU)\n- 구매 전환 극대화\n- 개인화 제안, 한정 혜택, 재타겟팅\n- **목표**: 실제 구매로 전환\n\n## 핵심 지표\n\n> 전환율 = (다음 단계 진입자 수 / 현재 단계 진입자 수) × 100\n\n- **클릭률(CTR)**: 광고 효율 측정\n- **리드 전환율**: TOFU → MOFU 효율\n- **구매 전환율**: 최종 성과 지표\n- **고객 획득 비용(CAC)**: 효율성 측정`,
     date:'2026-01-15', views:47, bookmark:false
   },
   {
     id:2, cat:'마케팅', title:'콘텐츠 마케팅 전략 가이드',
     tags:['콘텐츠','SEO','블로그','인바운드'],
-    content:`# 콘텐츠 마케팅 전략 가이드\n\n## 콘텐츠 마케팅이란?\n\n**콘텐츠 마케팅**은 광고 대신 가치 있는 정보와 이야기로 고객을 끌어당기는 인바운드 마케팅의 핵심 전략입니다.\n\n> "팔려고 하지 말고, 도움이 되어라." — 콘텐츠 마케팅의 황금률\n\n## 콘텐츠 유형별 특성\n\n### 블로그 포스트\n- SEO 효과 극대화\n- 롱테일 키워드 공략\n- 전문성 어필에 최적\n\n### 영상 콘텐츠\n- 유튜브, 릴스, 쇼츠\n- 참여율이 텍스트 대비 3배 높음\n- 브랜드 인지도 빠른 상승\n\n### 인포그래픽\n- 복잡한 정보를 시각화\n- 공유율 높음\n- 링크 빌딩에 유리\n\n## 콘텐츠 캘린더 구성\n\n1. **월 1~2개**: 심층 롱폼 콘텐츠 (기둥 콘텐츠)\n2. **주 2~3개**: 블로그 포스트\n3. **매일**: SNS 마이크로 콘텐츠\n\n## SEO 최적화 체크리스트\n\n- [ ] 타겟 키워드 포함 (제목, H2, 본문)\n- [ ] 메타 디스크립션 작성\n- [ ] 내부 링크 구조 최적화\n- [ ] 이미지 alt 태그 작성\n- [ ] 페이지 로딩 속도 확인`,
+    content:`# 콘텐츠 마케팅 전략 가이드\n\n## 콘텐츠 마케팅이란?\n\n**콘텐츠 마케팅**은 광고 대신 가치 있는 정보와 이야기로 고객을 끌어당기는 인바운드 마케팅의 핵심 전략입니다.\n\n> "팔려고 하지 말고, 도움이 되어라." — 콘텐츠 마케팅의 황금률\n\n## 콘텐츠 유형별 특성\n\n### 블로그 포스트\n- SEO 효과 극대화\n- 롱테일 키워드 공략\n- 전문성 어필에 최적\n\n### 영상 콘텐츠\n- 유튜브, 릴스, 쇼츠\n- 참여율이 텍스트 대비 3배 높음((Nielsen 2023 보고서 기준))\n- 브랜드 인지도 빠른 상승\n\n### 인포그래픽\n- 복잡한 정보를 시각화\n- 공유율 높음\n- 링크 빌딩에 유리\n\n## 콘텐츠 캘린더 구성\n\n1. **월 1~2개**: 심층 롱폼 콘텐츠 (기둥 콘텐츠)\n2. **주 2~3개**: 블로그 포스트\n3. **매일**: SNS 마이크로 콘텐츠\n\n## SEO 최적화 체크리스트\n\n- [ ] 타겟 키워드 포함 (제목, H2, 본문)\n- [ ] 메타 디스크립션 작성\n- [ ] 내부 링크 구조 최적화\n- [ ] 이미지 alt 태그 작성\n- [ ] 페이지 로딩 속도 확인`,
     date:'2026-01-20', views:38, bookmark:true
   },
   {
     id:3, cat:'마케팅', title:'그로스해킹: 데이터 드리븐 성장 전략',
     tags:['그로스해킹','AARRR','PMF','스타트업'],
-    content:`# 그로스해킹: 데이터 드리븐 성장 전략\n\n## 그로스해킹이란?\n\n그로스해킹(Growth Hacking)은 **데이터와 실험**을 기반으로 빠른 성장을 추구하는 마케팅 방법론입니다. 숀 엘리스(Sean Ellis)가 2010년 처음 제시했습니다.\n\n## AARRR 프레임워크 (해적 지표)\n\n- **Acquisition**: 사용자 획득 (어떻게 알게 되었나?)\n- **Activation**: 활성화 (첫 경험이 좋았나?)\n- **Retention**: 유지 (다시 돌아오는가?)\n- **Revenue**: 수익 (돈을 지불하는가?)\n- **Referral**: 추천 (다른 사람에게 알리는가?)\n\n## Product-Market Fit 찾기\n\n> "40% 이상의 사용자가 '이 제품이 없어지면 매우 실망할 것이다'라고 답하면 PMF 달성"\n\n### PMF 확인 방법\n1. **Sean Ellis Test**: 위 기준 설문조사\n2. **리텐션 커브**: 평평해지면 PMF 신호\n3. **NPS 점수**: 50 이상이면 강한 PMF\n\n## 성장 루프 설계\n\n### 바이럴 루프\n사용자 → 제품 사용 → 친구 초대 → 신규 사용자\n\n### 실험 프레임워크\n1. **가설 설정**: "~를 하면 ~가 X% 증가할 것이다"\n2. **우선순위 결정**: ICE 스코어 (Impact × Confidence × Ease)\n3. **A/B 테스트 실행**: 통계적 유의성 확보\n4. **결과 분석**: 학습 내용 문서화`,
+    content:`# 그로스해킹: 데이터 드리븐 성장 전략\n\n## 그로스해킹이란?\n\n그로스해킹(Growth Hacking)은 **데이터와 실험**을 기반으로 빠른 성장을 추구하는 마케팅 방법론입니다. 숀 엘리스(Sean Ellis)가 2010년 처음 제시했습니다.((숀 엘리스는 드롭박스, 로그미인 등의 스타트업에서 초기 성장을 이끈 인물입니다.))\n\n## AARRR 프레임워크 (해적 지표)\n\n- **Acquisition**: 사용자 획득 (어떻게 알게 되었나?)\n- **Activation**: 활성화 (첫 경험이 좋았나?)\n- **Retention**: 유지 (다시 돌아오는가?)\n- **Revenue**: 수익 (돈을 지불하는가?)\n- **Referral**: 추천 (다른 사람에게 알리는가?)\n\n## Product-Market Fit 찾기\n\n> "40% 이상의 사용자가 '이 제품이 없어지면 매우 실망할 것이다'라고 답하면 PMF 달성"\n\n### PMF 확인 방법\n1. **Sean Ellis Test**: 위 기준 설문조사\n2. **리텐션 커브**: 평평해지면 PMF 신호\n3. **NPS 점수**: 50 이상이면 강한 PMF\n\n## 성장 루프 설계\n\n### 바이럴 루프\n사용자 → 제품 사용 → 친구 초대 → 신규 사용자\n\n### 실험 프레임워크\n1. **가설 설정**: "~를 하면 ~가 X% 증가할 것이다"\n2. **우선순위 결정**: ICE 스코어 (Impact × Confidence × Ease)\n3. **A/B 테스트 실행**: 통계적 유의성 확보\n4. **결과 분석**: 학습 내용 문서화`,
     date:'2026-01-28', views:52, bookmark:false
   },
   {
     id:4, cat:'창작론', title:'3막 구조: 이야기의 뼈대',
     tags:['3막구조','시나리오','스토리텔링','극작'],
-    content:`# 3막 구조: 이야기의 뼈대\n\n## 개요\n\n3막 구조는 아리스토텔레스의 《시학》에서 기원한 서사의 기본 틀입니다. 할리우드부터 소설, 게임까지 가장 널리 쓰이는 이야기 구조입니다.\n\n## 1막: 설정 (Setup)\n\n### 목표\n- 세계관과 주인공 소개\n- 감정적 투자 유도\n- 이야기의 문제 제시\n\n### 핵심 요소\n- **오프닝 이미지**: 이야기의 톤 설정\n- **주제 제시**: 독자에게 던지는 질문\n- **전환점 1**: 주인공을 2막으로 밀어넣는 사건\n\n## 2막: 대립 (Confrontation)\n\n### 핵심 요소\n- **B스토리**: 주제를 강화하는 서브플롯\n- **중간점**: 이야기의 전환 - 가짜 승리 또는 가짜 패배\n- **어둠의 밤**: 주인공의 최저점\n- **전환점 2**: 클라이맥스로의 돌입\n\n## 3막: 해결 (Resolution)\n\n### 핵심 요소\n- **클라이맥스**: 최종 대결/결정\n- **결말**: 새로운 균형 상태\n- **클로징 이미지**: 오프닝과 대비\n\n## 실전 적용\n\n> 이야기를 쓸 때 먼저 묻자: "내 캐릭터는 어떻게 변하는가?"\n\n1. 주인공의 **외적 목표**와 **내적 욕구** 구분\n2. 각 막의 전환점을 먼저 설계\n3. 역방향으로 채우기 (결말 → 시작)`,
+    content:`# 3막 구조: 이야기의 뼈대\n\n## 개요\n\n3막 구조는 아리스토텔레스의 《시학》에서 기원한 서사의 기본 틀입니다.((아리스토텔레스의 《시학》은 기원전 335년경 작성된 것으로 추정됩니다.)) 할리우드부터 소설, 게임까지 가장 널리 쓰이는 이야기 구조입니다.\n\n## 1막: 설정 (Setup)\n\n### 목표\n- 세계관과 주인공 소개\n- 감정적 투자 유도\n- 이야기의 문제 제시\n\n### 핵심 요소\n- **오프닝 이미지**: 이야기의 톤 설정\n- **주제 제시**: 독자에게 던지는 질문\n- **전환점 1**: 주인공을 2막으로 밀어넣는 사건\n\n## 2막: 대립 (Confrontation)\n\n### 핵심 요소\n- **B스토리**: 주제를 강화하는 서브플롯\n- **중간점**: 이야기의 전환 - 가짜 승리 또는 가짜 패배\n- **어둠의 밤**: 주인공의 최저점\n- **전환점 2**: 클라이맥스로의 돌입\n\n## 3막: 해결 (Resolution)\n\n### 핵심 요소\n- **클라이맥스**: 최종 대결/결정\n- **결말**: 새로운 균형 상태\n- **클로징 이미지**: 오프닝과 대비\n\n## 실전 적용\n\n> 이야기를 쓸 때 먼저 묻자: "내 캐릭터는 어떻게 변하는가?"\n\n1. 주인공의 **외적 목표**와 **내적 욕구** 구분\n2. 각 막의 전환점을 먼저 설계\n3. 역방향으로 채우기 (결말 → 시작)`,
     date:'2026-02-05', views:33, bookmark:true
   },
   {
@@ -676,25 +932,25 @@ const DEFAULT_POSTS = [
   {
     id:6, cat:'창작론', title:'복선과 떡밥: 독자를 사로잡는 기술',
     tags:['복선','떡밥회수','미스터리','서스펜스'],
-    content:`# 복선과 떡밥: 독자를 사로잡는 기술\n\n## 복선(Foreshadowing)이란?\n\n복선은 이후 사건을 암시하는 장치로, 독자에게 **"아, 그래서 그랬구나!"**라는 쾌감을 선사합니다.\n\n> "좋은 복선은 재독 시에만 보인다."\n\n## 복선의 종류\n\n### 1. 명시적 복선\n독자가 인지할 수 있는 직접적인 암시\n\n### 2. 은유적 복선\n상징이나 이미지로 암시\n- 죽음을 앞둔 인물 곁의 시들어가는 꽃\n- 폭풍 전의 고요한 날씨\n\n### 3. 구조적 복선\n- 1막의 장면이 3막에서 반전되거나 반복\n\n## 체호프의 총 법칙\n\n> 1막에서 벽에 총이 걸려 있다면, 3막에서는 반드시 발사되어야 한다.\n\n이야기에 등장하는 모든 요소는 반드시 의미 있게 사용되어야 한다.\n\n## 효과적인 복선 기법\n\n### 레드 헤링 (Red Herring)\n독자를 잘못된 방향으로 유도하는 **가짜 복선**\n- 미스터리 장르에서 핵심 기법\n\n### 씨앗 뿌리기 (Planting)\n나중에 중요해질 정보를 자연스럽게 심기\n\n## 실전 체크리스트\n\n- [ ] 모든 핵심 반전에 3개 이상의 복선이 있는가?\n- [ ] 복선이 너무 명확하지는 않은가?\n- [ ] 1막에서 등장한 요소들이 모두 회수되었는가?`,
+    content:`# 복선과 떡밥: 독자를 사로잡는 기술\n\n## 복선(Foreshadowing)이란?\n\n복선은 이후 사건을 암시하는 장치로, 독자에게 **"아, 그래서 그랬구나!"**라는 쾌감을 선사합니다.\n\n> "좋은 복선은 재독 시에만 보인다."\n\n## 복선의 종류\n\n### 1. 명시적 복선\n독자가 인지할 수 있는 직접적인 암시\n\n### 2. 은유적 복선\n상징이나 이미지로 암시\n- 죽음을 앞둔 인물 곁의 시들어가는 꽃\n- 폭풍 전의 고요한 날씨\n\n### 3. 구조적 복선\n- 1막의 장면이 3막에서 반전되거나 반복\n\n## 체호프의 총 법칙\n\n> 1막에서 벽에 총이 걸려 있다면, 3막에서는 반드시 발사되어야 한다.\n\n이야기에 등장하는 모든 요소는 반드시 의미 있게 사용되어야 한다.((안톤 체호프(Anton Chekhov)가 연극 작법에 대해 한 말로, '체호프의 총'이라는 이름으로 유명해졌습니다.))\n\n## 효과적인 복선 기법\n\n### 레드 헤링 (Red Herring)\n독자를 잘못된 방향으로 유도하는 **가짜 복선**\n- 미스터리 장르에서 핵심 기법\n\n### 씨앗 뿌리기 (Planting)\n나중에 중요해질 정보를 자연스럽게 심기\n\n## 실전 체크리스트\n\n- [ ] 모든 핵심 반전에 3개 이상의 복선이 있는가?\n- [ ] 복선이 너무 명확하지는 않은가?\n- [ ] 1막에서 등장한 요소들이 모두 회수되었는가?`,
     date:'2026-02-20', views:41, bookmark:true
   },
   {
     id:7, cat:'생활팁', title:'시간관리의 기술: GTD와 타임블로킹',
     tags:['GTD','타임블로킹','생산성','시간관리'],
-    content:`# 시간관리의 기술: GTD와 타임블로킹\n\n## 왜 시간관리가 어려운가?\n\n뇌는 **기억 장치**가 아니라 **처리 장치**입니다. 할 일을 머릿속에 담아두면 인지 부하가 증가하고 실행력이 떨어집니다.\n\n## GTD (Getting Things Done)\n\n데이비드 앨런이 창안한 생산성 시스템\n\n### 5단계 프로세스\n\n1. **수집 (Capture)**: 모든 것을 외부 시스템에 저장\n2. **명확화 (Clarify)**: 각 항목의 다음 액션 결정\n3. **정리 (Organize)**: 적절한 위치에 배치\n4. **검토 (Reflect)**: 정기적으로 시스템 검토\n5. **실행 (Engage)**: 맥락에 맞는 일 처리\n\n### GTD 핵심 원칙\n\n> "2분 안에 할 수 있으면 지금 당장 해라"\n\n## 타임블로킹 (Time Blocking)\n\n캘린더에 **모든 활동을 블록**으로 예약하는 방법\n\n### 기본 원칙\n\n1. **딥워크 블록**: 집중이 필요한 작업 (2~4시간)\n2. **행정 블록**: 이메일, 회의 등 (30분~1시간)\n3. **완충 블록**: 예상치 못한 일 처리용 (1시간)\n\n## MIT (Most Important Task)\n\n매일 아침 **3개 이하**의 가장 중요한 과제를 선정\n- 그날 다른 것은 하지 못해도 MIT만은 반드시 완료\n- 에너지가 높은 아침에 먼저 처리`,
+    content:`# 시간관리의 기술: GTD와 타임블로킹\n\n## 왜 시간관리가 어려운가?\n\n뇌는 **기억 장치**가 아니라 **처리 장치**입니다. 할 일을 머릿속에 담아두면 인지 부하가 증가하고 실행력이 떨어집니다.\n\n## GTD (Getting Things Done)\n\n데이비드 앨런이 창안한 생산성 시스템((데이비드 앨런의 동명 저서 《Getting Things Done》(2001)에서 상세히 설명됩니다.))\n\n### 5단계 프로세스\n\n1. **수집 (Capture)**: 모든 것을 외부 시스템에 저장\n2. **명확화 (Clarify)**: 각 항목의 다음 액션 결정\n3. **정리 (Organize)**: 적절한 위치에 배치\n4. **검토 (Reflect)**: 정기적으로 시스템 검토\n5. **실행 (Engage)**: 맥락에 맞는 일 처리\n\n### GTD 핵심 원칙\n\n> "2분 안에 할 수 있으면 지금 당장 해라"\n\n## 타임블로킹 (Time Blocking)\n\n캘린더에 **모든 활동을 블록**으로 예약하는 방법\n\n### 기본 원칙\n\n1. **딥워크 블록**: 집중이 필요한 작업 (2~4시간)\n2. **행정 블록**: 이메일, 회의 등 (30분~1시간)\n3. **완충 블록**: 예상치 못한 일 처리용 (1시간)\n\n## MIT (Most Important Task)\n\n매일 아침 **3개 이하**의 가장 중요한 과제를 선정\n- 그날 다른 것은 하지 못해도 MIT만은 반드시 완료\n- 에너지가 높은 아침에 먼저 처리`,
     date:'2026-03-01', views:61, bookmark:false
   },
   {
     id:8, cat:'생활팁', title:'미니멀 정리정돈: 물건과의 이별',
     tags:['미니멀리즘','정리','곤마리','공간'],
-    content:`# 미니멀 정리정돈: 물건과의 이별\n\n## 왜 물건이 쌓이는가?\n\n물건은 **미래의 두려움**과 **과거에 대한 미련**의 물리적 표현입니다.\n\n## 곤마리 메서드 (KonMari)\n\n마리에 곤도가 개발한 정리 철학\n\n### 핵심 질문\n\n> "이 물건을 손에 쥐었을 때 **설레는가(Spark Joy)?**"\n\n### 정리 순서 (반드시 이 순서로!)\n\n1. **옷** - 감정적 애착이 가장 적음\n2. **책** - 지식에 대한 집착 직면\n3. **서류** - 원칙: 모든 서류는 버린다\n4. **코모노** (잡동사니) - 가장 다양한 카테고리\n5. **추억의 물건** - 감정적으로 가장 어려움\n\n## 미니멀리즘 원칙\n\n### 원 인 원 아웃 (One In, One Out)\n새 물건 하나가 들어오면 기존 물건 하나를 내보낸다\n\n### 30일 룰\n구매 충동이 생기면 30일 후에도 원하면 산다\n- 충동구매의 80%는 30일 후 원하지 않음\n\n## 정리 후 유지하는 법\n\n1. **물건의 집**을 반드시 정한다\n2. 사용 후 **즉시 제자리**에\n3. **정기 점검**: 월 1회 미니 정리`,
+    content:`# 미니멀 정리정돈: 물건과의 이별\n\n## 왜 물건이 쌓이는가?\n\n물건은 **미래의 두려움**과 **과거에 대한 미련**의 물리적 표현입니다.\n\n## 곤마리 메서드 (KonMari)\n\n마리에 곤도가 개발한 정리 철학((마리에 곤도의 저서 《인생이 빛나는 정리의 마법》(2011)이 전 세계적으로 큰 반향을 일으켰습니다.))\n\n### 핵심 질문\n\n> "이 물건을 손에 쥐었을 때 **설레는가(Spark Joy)?**"\n\n### 정리 순서 (반드시 이 순서로!)\n\n1. **옷** - 감정적 애착이 가장 적음\n2. **책** - 지식에 대한 집착 직면\n3. **서류** - 원칙: 모든 서류는 버린다\n4. **코모노** (잡동사니) - 가장 다양한 카테고리\n5. **추억의 물건** - 감정적으로 가장 어려움\n\n## 미니멀리즘 원칙\n\n### 원 인 원 아웃 (One In, One Out)\n새 물건 하나가 들어오면 기존 물건 하나를 내보낸다\n\n### 30일 룰\n구매 충동이 생기면 30일 후에도 원하면 산다\n- 충동구매의 80%는 30일 후 원하지 않음\n\n## 정리 후 유지하는 법\n\n1. **물건의 집**을 반드시 정한다\n2. 사용 후 **즉시 제자리**에\n3. **정기 점검**: 월 1회 미니 정리`,
     date:'2026-03-10', views:44, bookmark:false
   },
   {
     id:9, cat:'생활팁', title:'습관 만들기: 원자 습관의 과학',
     tags:['습관','원자습관','행동변화','루틴'],
-    content:`# 습관 만들기: 원자 습관의 과학\n\n## 왜 습관이 중요한가?\n\n인간 행동의 **40~45%**는 습관에 의해 결정됩니다.\n\n> "1%씩 매일 좋아진다면 1년 후 37배 성장한다." — 제임스 클리어\n\n## 원자 습관의 4법칙\n\n| 법칙 | 만들기 | 없애기 |\n|------|--------|--------|\n| 1. 신호 | **명확하게** | 보이지 않게 |\n| 2. 열망 | **매력적으로** | 매력 없게 |\n| 3. 반응 | **쉽게** | 어렵게 |\n| 4. 보상 | **만족스럽게** | 불만족스럽게 |\n\n## 실전 기법\n\n### 1. 습관 쌓기 (Habit Stacking)\n기존 습관에 새 습관을 연결\n\n"[현재 습관]을 한 후에 [새로운 습관]을 할 것이다"\n\n예: 커피를 마신 후에 → 10분 책 읽기\n\n### 2. 실행 의도 (Implementation Intention)\n"나는 매일 오전 7시에 책상에서 30분 글을 쓸 것이다"\n\n### 3. 2분 규칙\n새 습관은 **2분 이내**로 시작\n- "매일 30분 달리기" → "운동화 신기"\n- "매일 독서" → "책 1페이지 읽기"\n\n## 정체성 기반 습관\n\n1. **결과 중심 X**: "책을 읽고 싶다"\n2. **정체성 중심 O**: "나는 독서가이다"\n3. 매 행동이 그 정체성에 **투표**하는 것\n4. 충분한 투표가 쌓이면 정체성이 바뀐다`,
+    content:`# 습관 만들기: 원자 습관의 과학\n\n## 왜 습관이 중요한가?\n\n인간 행동의 **40~45%**는 습관에 의해 결정됩니다.((Duke University 2006년 연구 결과, 인간 행동의 약 45%가 습관에 의해 이루어진다는 것이 밝혀졌습니다.))\n\n> "1%씩 매일 좋아진다면 1년 후 37배 성장한다." — 제임스 클리어\n\n## 원자 습관의 4법칙\n\n| 법칙 | 만들기 | 없애기 |\n|------|--------|--------|\n| 1. 신호 | **명확하게** | 보이지 않게 |\n| 2. 열망 | **매력적으로** | 매력 없게 |\n| 3. 반응 | **쉽게** | 어렵게 |\n| 4. 보상 | **만족스럽게** | 불만족스럽게 |\n\n## 실전 기법\n\n### 1. 습관 쌓기 (Habit Stacking)\n기존 습관에 새 습관을 연결\n\n"[현재 습관]을 한 후에 [새로운 습관]을 할 것이다"\n\n예: 커피를 마신 후에 → 10분 책 읽기\n\n### 2. 실행 의도 (Implementation Intention)\n"나는 매일 오전 7시에 책상에서 30분 글을 쓸 것이다"\n\n### 3. 2분 규칙\n새 습관은 **2분 이내**로 시작\n- "매일 30분 달리기" → "운동화 신기"\n- "매일 독서" → "책 1페이지 읽기"\n\n## 정체성 기반 습관\n\n1. **결과 중심 X**: "책을 읽고 싶다"\n2. **정체성 중심 O**: "나는 독서가이다"\n3. 매 행동이 그 정체성에 **투표**하는 것\n4. 충분한 투표가 쌓이면 정체성이 바뀐다`,
     date:'2026-03-18', views:73, bookmark:true
   }
 ];
@@ -718,15 +974,41 @@ function loadData() {
 
 function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(posts)); }
 
-function parseMarkdown(md) {
+// 각주 처리: ((텍스트)) → [N] 인라인 + 하단 각주 목록
+function processFootnotes(html) {
+  const footnotes = [];
+  let n = 0;
+  // ((...)) 패턴을 찾아 각주 처리 (이미 HTML 이스케이프된 상태)
+  const processed = html.replace(/\(\(([^)]+(?:\)[^)]*)*?)\)\)/g, (match, text) => {
+    n++;
+    footnotes.push({ n, text });
+    return `<a href="#fn-${n}" id="ref-${n}" class="footnote-ref">[${n}]</a>`;
+  });
+  let result = processed;
+  if (footnotes.length > 0) {
+    const fnHtml = footnotes.map(fn =>
+      `<div class="footnote-item"><a href="#ref-${fn.n}" id="fn-${fn.n}" class="fn-num">[${fn.n}]</a><span>${fn.text}</span></div>`
+    ).join('');
+    result += `<div class="footnotes-section"><h4>각주</h4>${fnHtml}</div>`;
+  }
+  return result;
+}
+
+function parseMarkdown(md, addSectionEdit) {
   if (!md) return '';
   let html = md
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
     .replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>')
     .replace(/`([^`]+)`/g,'<code>$1</code>')
-    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
-    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
-    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/^### (.+)$/gm, (_, t) => addSectionEdit
+      ? `<h3><span>${t}</span><button class="section-edit-btn" onclick="editCurrentPost()">편집</button></h3>`
+      : `<h3>${t}</h3>`)
+    .replace(/^## (.+)$/gm, (_, t) => addSectionEdit
+      ? `<h2><span>${t}</span><button class="section-edit-btn" onclick="editCurrentPost()">편집</button></h2>`
+      : `<h2>${t}</h2>`)
+    .replace(/^# (.+)$/gm, (_, t) => addSectionEdit
+      ? `<h1><span>${t}</span><button class="section-edit-btn" onclick="editCurrentPost()">편집</button></h1>`
+      : `<h1>${t}</h1>`)
     .replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>')
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/\*(.+?)\*/g,'<em>$1</em>')
@@ -737,7 +1019,7 @@ function parseMarkdown(md) {
     .replace(/^- (.+)$/gm,'<li>$1</li>')
     .replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
 
-  // Table processing
+  // Table
   const lines = html.split('\n');
   const out = [];
   let inTable = false;
@@ -773,6 +1055,61 @@ function parseMarkdown(md) {
   }).join('\n');
 
   return html;
+}
+
+// TOC 생성
+function buildTOC(html) {
+  const headings = [];
+  const regex = /<h([12])[^>]*><span>([^<]+)<\/span>/g;
+  let m;
+  while ((m = regex.exec(html)) !== null) {
+    headings.push({ level: parseInt(m[1]), text: m[2] });
+  }
+  if (headings.length < 2) return '';
+
+  // 헤딩에 id 부여
+  const idMap = {};
+  headings.forEach(h => {
+    const base = 'sec-' + h.text.replace(/[^가-힣a-zA-Z0-9]/g,'_');
+    idMap[h.text] = base;
+  });
+
+  let tocItems = headings.map(h => {
+    const id = idMap[h.text];
+    const cls = h.level === 1 ? 'toc-h2' : 'toc-h3';
+    return `<li class="${cls}"><a href="#${id}">${h.text}</a></li>`;
+  }).join('');
+
+  return `<div class="wiki-toc" id="wiki-toc-box">
+    <div class="wiki-toc-title">
+      <span>목차</span>
+      <span class="toc-toggle" onclick="toggleTOC()">[접기]</span>
+    </div>
+    <ol id="wiki-toc-list">${tocItems}</ol>
+  </div>`;
+}
+
+function toggleTOC() {
+  const list = document.getElementById('wiki-toc-list');
+  const btn = document.querySelector('.toc-toggle');
+  if (!list || !btn) return;
+  if (list.style.display === 'none') {
+    list.style.display = '';
+    btn.textContent = '[접기]';
+  } else {
+    list.style.display = 'none';
+    btn.textContent = '[펼치기]';
+  }
+}
+
+// 헤딩에 anchor id 부여
+function addHeadingAnchors(html) {
+  return html.replace(/<h([12])><span>([^<]+)<\/span>/g, (match, level, text) => {
+    const id = 'sec-' + text.replace(/[^가-힣a-zA-Z0-9]/g,'_');
+    return `<h${level} id="${id}"><span>`;
+  }).replace(/<h([12]) id="([^"]+)"><span>/g, (match, level, id) => {
+    return `<h${level} id="${id}"><span>`;
+  });
 }
 
 function getFilteredPosts() {
@@ -891,11 +1228,25 @@ function viewPost(id) {
   p.views = (p.views||0)+1;
   saveData();
   viewingPostId = id;
-  document.getElementById('pv-cat').textContent = '['+p.cat+']';
+
+  document.getElementById('pv-cat').innerHTML = `<a href="#" onclick="filterCat('${esc(p.cat)}');return false;">${esc(p.cat)}</a>`;
   document.getElementById('pv-title').textContent = p.title;
   document.getElementById('pv-date').textContent = p.date;
   document.getElementById('pv-views').textContent = p.views;
-  document.getElementById('pv-body').innerHTML = parseMarkdown(p.content);
+
+  // 마크다운 → HTML (섹션 편집 버튼 포함)
+  let bodyHtml = parseMarkdown(p.content, true);
+  // 각주 처리
+  bodyHtml = processFootnotes(bodyHtml);
+  // TOC 생성
+  const toc = buildTOC(bodyHtml);
+  // 첫 번째 h1 이후에 TOC 삽입
+  if (toc) {
+    bodyHtml = bodyHtml.replace(/(<\/h1>)/, '$1' + toc);
+  }
+
+  document.getElementById('pv-body').innerHTML = bodyHtml;
+
   const tagsRow = document.getElementById('pv-tags-row');
   if (p.tags && p.tags.length) {
     tagsRow.innerHTML = '<span class="pv-tags-label">태그:</span>' +
@@ -913,13 +1264,13 @@ function showEditor(editId) {
   if (editId) {
     const p = posts.find(x=>x.id===editId);
     if (!p) return;
-    hdr.textContent = '✏️ 문서 수정';
+    hdr.textContent = '문서 수정';
     document.getElementById('edit-cat').value = p.cat;
     document.getElementById('edit-title').value = p.title;
     document.getElementById('edit-tags').value = (p.tags||[]).join(', ');
     document.getElementById('edit-content').value = p.content;
   } else {
-    hdr.textContent = '✏️ 새 글 작성';
+    hdr.textContent = '새 글 작성';
     document.getElementById('edit-cat').value = '마케팅';
     document.getElementById('edit-title').value = '';
     document.getElementById('edit-tags').value = '';
@@ -982,8 +1333,7 @@ function filterCat(cat) {
   const el = document.getElementById('cat-'+key);
   if (el) el.classList.add('active');
   const titles={'':'전체 문서 목록','마케팅':'마케팅 문서','창작론':'창작론 문서','생활팁':'생활팁 문서','__bookmark__':'북마크한 문서'};
-  const icons={'':'📋','마케팅':'📊','창작론':'✍️','생활팁':'💡','__bookmark__':'⭐'};
-  document.getElementById('board-title').textContent=(icons[cat]||'📋')+' '+(titles[cat]||cat);
+  document.getElementById('board-title').textContent = titles[cat] || cat;
   showView('list');
   renderList();
 }
@@ -1046,7 +1396,12 @@ function switchTab(tab) {
   const pv=document.getElementById('preview-content');
   const tb=document.getElementById('md-toolbar');
   if(tab==='edit'){ta.style.display='block';tb.style.display='flex';pv.style.display='none';}
-  else{ta.style.display='none';tb.style.display='none';pv.style.display='block';pv.innerHTML=parseMarkdown(ta.value);}
+  else{
+    ta.style.display='none';tb.style.display='none';pv.style.display='block';
+    let html = parseMarkdown(ta.value, false);
+    html = processFootnotes(html);
+    pv.innerHTML = html;
+  }
 }
 
 function insertMd(before,after) {
@@ -1063,7 +1418,7 @@ function showBackupModal() {
   const json=JSON.stringify(posts,null,2);
   const overlay=document.createElement('div');
   overlay.className='modal-overlay';
-  overlay.innerHTML=`<div class="modal"><h3>💾 JSON 백업</h3><p>아래 내용을 복사하여 저장해두세요.</p><textarea readonly>${esc(json)}</textarea><div class="modal-btns"><button class="save-btn" onclick="navigator.clipboard.writeText(this.closest('.modal').querySelector('textarea').value).then(()=>showToast('복사 완료!'))">📋 복사</button><button class="cancel-btn" onclick="this.closest('.modal-overlay').remove()">닫기</button></div></div>`;
+  overlay.innerHTML=`<div class="modal"><h3>JSON 백업</h3><p>아래 내용을 복사하여 저장해두세요.</p><textarea readonly>${esc(json)}</textarea><div class="modal-btns"><button class="save-btn" onclick="navigator.clipboard.writeText(this.closest('.modal').querySelector('textarea').value).then(()=>showToast('복사 완료!'))">복사</button><button class="cancel-btn" onclick="this.closest('.modal-overlay').remove()">닫기</button></div></div>`;
   document.body.appendChild(overlay);
   overlay.querySelector('textarea').select();
 }
@@ -1071,7 +1426,7 @@ function showBackupModal() {
 function showRestoreModal() {
   const overlay=document.createElement('div');
   overlay.className='modal-overlay';
-  overlay.innerHTML=`<div class="modal"><h3>📥 JSON 복원</h3><p>백업한 JSON 데이터를 붙여넣으세요. <strong>기존 데이터가 교체됩니다.</strong></p><textarea placeholder="JSON 데이터를 여기에 붙여넣으세요..."></textarea><div class="modal-btns"><button class="save-btn" onclick="doRestore(this)">복원하기</button><button class="cancel-btn" onclick="this.closest('.modal-overlay').remove()">취소</button></div></div>`;
+  overlay.innerHTML=`<div class="modal"><h3>JSON 복원</h3><p>백업한 JSON 데이터를 붙여넣으세요. <strong>기존 데이터가 교체됩니다.</strong></p><textarea placeholder="JSON 데이터를 여기에 붙여넣으세요..."></textarea><div class="modal-btns"><button class="save-btn" onclick="doRestore(this)">복원하기</button><button class="cancel-btn" onclick="this.closest('.modal-overlay').remove()">취소</button></div></div>`;
   document.body.appendChild(overlay);
 }
 
